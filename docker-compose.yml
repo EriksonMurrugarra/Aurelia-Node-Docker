@@ -1,0 +1,27 @@
+version: '3'
+services:
+  web:
+    build: 
+      context: ./wc-frontend
+    ports:
+    - "9000:9000"
+    volumes:
+    - "./wc-frontend:/opt/app"
+    links:
+      - backend
+
+  backend:
+    build: 
+      context: ./wc-backend
+    ports:
+    - "3000:3000"
+    volumes:
+    - "./wc-backend:/opt/app"
+    links:
+      - db
+
+  db:
+    image: mongo
+
+
+  
